@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velvet Cakes | Artisan Bakery (Demo Website)</title>
+<meta name="description" content="Velvet Cakes is a fictional artisan cake shop. This is a portfolio demo website.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#faf4ea;--white:#fffdf9;--sand:#f0e4d0;--choc:#4a2c20;--choc2:#6b4333;--rose:#c98a7a;--text:#3b2a22;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--sans);background:var(--cream);color:var(--text);line-height:1.7;font-size:17px}
+h1,h2,h3{font-family:var(--serif);color:var(--choc);line-height:1.15}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+section{padding:84px 0}
+.eyebrow{letter-spacing:.2em;text-transform:uppercase;font-size:.78rem;color:var(--rose);font-weight:500}
+h2{font-size:clamp(2rem,5vw,3rem);margin:6px 0 14px}
+.lead{max-width:600px;color:#6b5448}
+.center{text-align:center}.center .lead{margin:0 auto}
+.btn{display:inline-block;background:var(--choc);color:var(--cream);border:2px solid var(--choc);padding:13px 28px;border-radius:40px;font:500 .95rem var(--sans);letter-spacing:.05em;cursor:pointer;text-decoration:none;transition:.25s}
+.btn:hover{background:var(--choc2);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--choc)}
+.btn.ghost:hover{background:var(--choc);color:var(--cream)}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+.skip{position:absolute;left:-999px;background:var(--choc);color:#fff;padding:10px 16px;z-index:200}
+.skip:focus{left:10px;top:10px}
+.demo-bar{background:var(--choc);color:var(--sand);text-align:center;font-size:.8rem;padding:7px 12px}
+/* NAV */
+header{position:sticky;top:0;z-index:100;background:rgba(255,253,249,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--sand)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:var(--serif);font-size:1.7rem;font-weight:700;color:var(--choc);text-decoration:none;display:flex;gap:8px;align-items:center}
+.logo span{color:var(--rose);font-style:italic}
+nav ul{display:flex;gap:26px;list-style:none}
+nav a{text-decoration:none;font-size:.95rem;padding:6px 0;border-bottom:2px solid transparent;transition:.2s}
+nav a:hover,nav a.active{border-color:var(--rose);color:var(--choc)}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:10px}
+.burger i{display:block;width:26px;height:2px;background:var(--choc);margin:6px 0;transition:.3s}
+.burger[aria-expanded=true] i:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger[aria-expanded=true] i:nth-child(2){opacity:0}
+.burger[aria-expanded=true] i:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+/* HERO */
+.hero{padding:70px 0 90px;background:radial-gradient(circle at 80% 20%,var(--sand),transparent 55%),var(--cream)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.8rem,7vw,5rem);margin:12px 0 18px}
+.hero h1 em{color:var(--rose)}
+.hero p{max-width:480px;margin-bottom:28px;color:#6b5448}
+.hero .btns{display:flex;gap:14px;flex-wrap:wrap}
+.hero-art{background:var(--white);border-radius:200px 200px 24px 24px;padding:34px 20px 20px;box-shadow:0 30px 60px -25px rgba(74,44,32,.35);animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px)}}
+/* CAKES */
+.cake{width:100%;height:auto;display:block}
+.grid{display:grid;gap:26px;margin-top:44px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(235px,1fr))}
+.card{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:0 8px 28px -14px rgba(74,44,32,.3);transition:.3s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 36px -16px rgba(74,44,32,.4)}
+.card .img{background:var(--sand);padding:24px 26px 10px}
+.card .body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{font-size:1.5rem}
+.card p{font-size:.92rem;color:#6b5448;flex:1}
+.price{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--choc2)}
+.card .btn{padding:10px 18px;font-size:.85rem;margin-top:8px;text-align:center}
+.cats{background:var(--white)}
+.cat{text-align:center;padding:30px 18px;border:1px solid var(--sand);border-radius:20px;background:var(--cream);transition:.3s;text-decoration:none;display:block}
+.cat:hover{background:var(--sand);transform:translateY(-4px)}
+.cat .ico{font-size:2.3rem}
+.cat h3{font-size:1.4rem;margin:6px 0 2px}
+.cat p{font-size:.88rem;color:#6b5448}
+/* ABOUT */
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.about-art{background:var(--choc);border-radius:24px;padding:40px;color:var(--cream);text-align:center}
+.about-art .big{font-family:var(--serif);font-size:4rem;line-height:1;color:var(--rose)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+.stats b{display:block;font:700 1.9rem var(--serif);color:var(--rose)}
+.stats span{font-size:.8rem;opacity:.85}
+.about p+p{margin-top:14px}
+/* FORM */
+.enquiry{background:var(--sand)}
+form{background:var(--white);max-width:720px;margin:40px auto 0;padding:34px;border-radius:24px;box-shadow:0 20px 50px -25px rgba(74,44,32,.4);display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.f{display:flex;flex-direction:column;gap:5px}.f.full{grid-column:1/-1}
+label{font-size:.88rem;font-weight:500;color:var(--choc)}
+input,select,textarea{font:inherit;padding:12px 14px;border:1.5px solid #d9c8b2;border-radius:12px;background:var(--cream);color:var(--text);width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--choc2);box-shadow:0 0 0 3px rgba(201,138,122,.35)}
+.err{color:#a32727;font-size:.82rem;min-height:1.1em}
+.invalid{border-color:#a32727!important}
+.note{font-size:.82rem;color:#6b5448}
+.success{display:none;grid-column:1/-1;background:#eef6e9;border:1.5px solid #8fb677;color:#2f5a1c;padding:16px 18px;border-radius:14px}
+.success.show{display:block}
+/* REVIEWS */
+.badge{display:inline-block;background:var(--choc);color:var(--sand);font-size:.75rem;padding:4px 14px;border-radius:20px;margin-top:6px}
+.review{background:var(--white);padding:28px;border-radius:20px;box-shadow:0 8px 28px -14px rgba(74,44,32,.3)}
+.stars{color:#d9a441;letter-spacing:3px}
+.review p{margin:10px 0 14px;font-family:var(--serif);font-size:1.2rem;line-height:1.45;color:var(--choc)}
+.review small{color:#6b5448}
+/* CONTACT */
+.contact{background:var(--choc);color:var(--sand)}
+.contact h2,.contact h3{color:var(--cream)}
+.contact .lead{color:var(--sand)}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:40px}
+.cbox{border:1px solid rgba(250,244,234,.25);border-radius:18px;padding:24px}
+.cbox h3{font-size:1.35rem;margin-bottom:6px}
+footer{background:#33201a;color:#cdb9a4;text-align:center;padding:34px 22px;font-size:.88rem}
+footer .logo{justify-content:center;color:var(--cream);margin-bottom:8px}
+footer ul{list-style:none;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+footer a{text-decoration:none}footer a:hover{color:#fff}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+@media(max-width:820px){
+ section{padding:62px 0}
+ .burger{display:block}
+ nav{position:absolute;top:100%;left:0;right:0;background:var(--white);border-bottom:1px solid var(--sand);max-height:0;overflow:hidden;transition:max-height .35s}
+ nav.open{max-height:380px}
+ nav ul{flex-direction:column;gap:0;padding:10px 22px 18px}
+ nav a{display:block;padding:12px 0;border-bottom:1px solid var(--sand)}
+ .hero .wrap,.about .wrap{grid-template-columns:1fr}
+ .hero-art{max-width:340px;margin:0 auto}
+ form{grid-template-columns:1fr;padding:24px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="demo-bar">Demo website for portfolio purposes. Velvet Cakes is a fictional business.</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="cake" viewBox="0 0 200 160">
+  <ellipse cx="100" cy="148" rx="88" ry="9" fill="rgba(74,44,32,.18)"/>
+  <rect x="32" y="62" width="136" height="82" rx="10" fill="var(--c1)"/>
+  <rect x="32" y="98" width="136" height="9" fill="var(--c2)"/>
+  <rect x="28" y="52" width="144" height="26" rx="13" fill="var(--c2)"/>
+  <circle cx="48" cy="80" r="8" fill="var(--c2)"/><circle cx="82" cy="84" r="9" fill="var(--c2)"/>
+  <circle cx="118" cy="81" r="8" fill="var(--c2)"/><circle cx="152" cy="83" r="8" fill="var(--c2)"/>
+  <circle cx="100" cy="42" r="11" fill="var(--c3)"/>
+  <path d="M100 32q6-14 16-16" stroke="#3d6b32" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="64" cy="58" r="3" fill="#fff" opacity=".7"/><circle cx="138" cy="60" r="3" fill="#fff" opacity=".7"/>
+ </symbol>
+</svg>
+
+<header>
+ <div class="wrap nav">
+  <a href="#home" class="logo" aria-label="Velvet Cakes home">🎂 Velvet <span>Cakes</span></a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+  <nav id="menu" aria-label="Main">
+   <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#bestsellers">Best Sellers</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#enquiry">Custom Cakes</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+   </ul>
+  </nav>
+ </div>
+</header>
+
+<main id="main">
+<section class="hero" id="home">
+ <div class="wrap">
+  <div>
+   <span class="eyebrow">Handcrafted in small batches</span>
+   <h1>Cakes made for <em>life's sweetest</em> moments</h1>
+   <p>Velvet Cakes bakes elegant celebration cakes with real butter, Belgian chocolate and seasonal fruit. Tell us your idea and we'll shape it into something unforgettable.</p>
+   <div class="btns">
+    <a href="#enquiry" class="btn">Request a Custom Cake</a>
+    <a href="#bestsellers" class="btn ghost">View Best Sellers</a>
+   </div>
+  </div>
+  <div class="hero-art" style="--c1:#6b3f2e;--c2:#f6e7d2;--c3:#b3263e">
+   <svg class="cake" role="img" aria-label="Illustration of a chocolate cake with cream frosting and a cherry"><use href="#cake"/></svg>
+  </div>
+ </div>
+</section>
+
+<section id="bestsellers">
+ <div class="wrap">
+  <div class="center reveal">
+   <span class="eyebrow">Our favourites</span>
+   <h2>Best-Selling Cakes</h2>
+   <p class="lead">Sample menu and prices for demonstration purposes only.</p>
+  </div>
+  <div class="grid g4" id="products"></div>
+ </div>
+</section>
+
+<section class="cats" id="categories">
+ <div class="wrap">
+  <div class="center reveal">
+   <span class="eyebrow">Browse</span>
+   <h2>Cake Categories</h2>
+   <p class="lead">Whatever the occasion, there's a Velvet Cakes creation for it.</p>
+  </div>
+  <div class="grid g4" id="cats"></div>
+ </div>
+</section>
+
+<section class="about" id="about">
+ <div class="wrap">
+  <div class="reveal">
+   <span class="eyebrow">Our story</span>
+   <h2>Baked slowly, finished beautifully</h2>
+   <p>Velvet Cakes began in a tiny kitchen with one oven and a belief that celebration cakes should taste as wonderful as they look.</p>
+   <p>Every sponge is baked fresh to order using free-range eggs, real butter and responsibly sourced chocolate. Nothing artificial, nothing rushed.</p>
+   <p>Our bakers hand-decorate each cake, from delicate buttercream florals to sleek modern finishes.</p>
+  </div>
+  <div class="about-art reveal">
+   <div class="big">“</div>
+   <p style="font-family:var(--serif);font-size:1.5rem;line-height:1.35">Great cake is equal parts patience, craft and love.</p>
+   <div class="stats">
+    <div><b>12+</b><span>Years baking</span></div>
+    <div><b>40</b><span>Flavours</span></div>
+    <div><b>100%</b><span>Hand-finished</span></div>
+   </div>
+   <p style="font-size:.75rem;margin-top:18px;opacity:.7">Fictional figures for demo purposes</p>
+  </div>
+ </div>
+</section>
+
+<section class="enquiry" id="enquiry">
+ <div class="wrap">
+  <div class="center reveal">
+   <span class="eyebrow">Made just for you</span>
+   <h2>Custom Cake Enquiry</h2>
+   <p class="lead">This is a demo form. Nothing is sent or stored, and no real orders are taken.</p>
+  </div>
+  <form id="form" novalidate class="reveal">
+   <div class="f"><label for="name">Your name *</label><input id="name" name="name" autocomplete="name" required><span class="err" id="e-name" aria-live="polite"></span></div>
+   <div class="f"><label for="email">Email *</label><input id="email" type="email" name="email" autocomplete="email" required><span class="err" id="e-email" aria-live="polite"></span></div>
+   <div class="f"><label for="cake">Cake type *</label>
+    <select id="cake" required>
+     <option value="">Choose a cake…</option>
+     <option>Chocolate Velvet Dream</option><option>Strawberry Cloud</option>
+     <option>Lemon Blossom</option><option>Salted Caramel Crown</option>
+     <option>Wedding Cake</option><option>Something totally custom</option>
+    </select><span class="err" id="e-cake" aria-live="polite"></span></div>
+   <div class="f"><label for="date">Event date *</label><input id="date" type="date" required><span class="err" id="e-date" aria-live="polite"></span></div>
+   <div class="f"><label for="size">Number of servings</label>
+    <select id="size"><option>6–8</option><option>10–15</option><option>20–30</option><option>40+</option></select></div>
+   <div class="f"><label for="budget">Budget (optional)</label><input id="budget" placeholder="e.g. $80–$120"></div>
+   <div class="f full"><label for="msg">Tell us your idea *</label><textarea id="msg" rows="4" placeholder="Colours, theme, flavours, allergies…" required></textarea><span class="err" id="e-msg" aria-live="polite"></span></div>
+   <div class="f full"><button type="submit" class="btn">Send Demo Enquiry</button><p class="note" style="margin-top:8px">Demo only: no data leaves your browser.</p></div>
+   <div class="success" id="ok" role="status" tabindex="-1"></div>
+  </form>
+ </div>
+</section>
+
+<section id="reviews">
+ <div class="wrap">
+  <div class="center reveal">
+   <span class="eyebrow">Kind words</span>
+   <h2>Customer Reviews</h2>
+   <span class="badge">Fictional demo content. Not real customers.</span>
+  </div>
+  <div class="grid g4" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+   <div class="review reveal"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>“The chocolate cake was rich, moist and almost too pretty to cut.”</p><small>Amelia R. · Sample review</small></div>
+   <div class="review reveal"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>“They matched our wedding colours perfectly. Guests are still talking about it.”</p><small>Daniel &amp; Priya · Sample review</small></div>
+   <div class="review reveal"><div class="stars" aria-label="4 out of 5 stars">★★★★☆</div><p>“Light lemon sponge and a lovely, friendly team to deal with.”</p><small>Marcus T. · Sample review</small></div>
+  </div>
+ </div>
+</section>
+
+<section class="contact" id="contact">
+ <div class="wrap">
+  <div class="center reveal">
+   <span class="eyebrow" style="color:var(--rose)">Say hello</span>
+   <h2>Visit &amp; Contact</h2>
+   <p class="lead">All details below are fictional and for demonstration only.</p>
+  </div>
+  <div class="cgrid">
+   <div class="cbox reveal"><h3>📍 Bakery</h3><p>12 Sample Lane<br>Cakeville, CV1 2AB<br>(Fictional address)</p></div>
+   <div class="cbox reveal"><h3>🕒 Opening hours</h3><p>Tue–Fri: 9am–6pm<br>Sat: 9am–4pm<br>Sun–Mon: Closed</p></div>
+   <div class="cbox reveal"><h3>✉️ Get in touch</h3><p>hello@velvetcakes.example<br>+1 (555) 010-0199<br>(Fictional details)</p></div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <a href="#home" class="logo">🎂 Velvet <span>Cakes</span></a>
+ <ul><li><a href="#bestsellers">Best Sellers</a></li><li><a href="#about">About</a></li><li><a href="#enquiry">Custom Cakes</a></li><li><a href="#contact">Contact</a></li></ul>
+ <p>© <span id="yr"></span> Velvet Cakes. A fictional brand created as a website design demo.</p>
+</footer>
+
+<script>
+const products=[
+ {n:"Chocolate Velvet Dream",d:"Triple-layer dark chocolate sponge with silky ganache.",p:"$48",c:["#6b3f2e","#e9d3b8","#b3263e"]},
+ {n:"Strawberry Cloud",d:"Vanilla sponge, whipped cream and fresh strawberries.",p:"$44",c:["#f3c4c4","#fff4ea","#c8283f"]},
+ {n:"Lemon Blossom",d:"Zesty lemon sponge with mascarpone frosting.",p:"$42",c:["#f4de8a","#fffaf0","#e8a93a"]},
+ {n:"Salted Caramel Crown",d:"Caramel buttercream, toffee shards and sea salt.",p:"$52",c:["#c58a4f","#f3dfc2","#7a3d1e"]}
+];
+const cats=[["🎉","Birthday","Fun, colourful and personal"],["💍","Wedding","Elegant tiers for your day"],["🧁","Cupcakes","Boxes of 6 or 12"],["🌱","Dietary","Egg-free & nut-free options"]];
+const $=s=>document.querySelector(s);
+$('#products').innerHTML=products.map(x=>`
+ <article class="card reveal"><div class="img" style="--c1:${x.c[0]};--c2:${x.c[1]};--c3:${x.c[2]}">
+ <svg class="cake" role="img" aria-label="Illustration of ${x.n}"><use href="#cake"/></svg></div>
+ <div class="body"><h3>${x.n}</h3><p>${x.d}</p><div class="price">${x.p}</div>
+ <button class="btn ghost pick" data-cake="${x.n}">Enquire about this cake</button></div></article>`).join('');
+$('#cats').innerHTML=cats.map(c=>`<a href="#enquiry" class="cat reveal"><div class="ico" aria-hidden="true">${c[0]}</div><h3>${c[1]}</h3><p>${c[2]}</p></a>`).join('');
+$('#yr').textContent=new Date().getFullYear();
+
+// Mobile menu
+const burger=$('#burger'),menu=$('#menu');
+function toggle(open){menu.classList.toggle('open',open);burger.setAttribute('aria-expanded',open);burger.setAttribute('aria-label',open?'Close menu':'Open menu')}
+burger.onclick=()=>toggle(!menu.classList.contains('open'));
+menu.querySelectorAll('a').forEach(a=>a.onclick=()=>toggle(false));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')toggle(false)});
+
+// Pick a cake button
+document.addEventListener('click',e=>{
+ const b=e.target.closest('.pick');if(!b)return;
+ $('#cake').value=b.dataset.cake;
+ $('#enquiry').scrollIntoView({behavior:'smooth'});
+ setTimeout(()=>$('#name').focus({preventScroll:true}),700);
+});
+
+// Active nav link
+const links=[...menu.querySelectorAll('a')];
+const spy=new IntersectionObserver(es=>es.forEach(e=>{
+ if(e.isIntersecting)links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));
+}),{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('main section').forEach(s=>spy.observe(s));
+
+// Reveal animation
+const rv=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>rv.observe(el));
+
+// Form validation (demo only)
+const today=new Date();today.setHours(0,0,0,0);
+$('#date').min=new Date(today.getTime()-today.getTimezoneOffset()*6e4).toISOString().split('T')[0];
+function check(id,err,ok,msg){const el=$('#'+id);const good=ok(el.value.trim());
+ el.classList.toggle('invalid',!good);el.setAttribute('aria-invalid',!good);$('#e-'+err).textContent=good?'':msg;return good}
+$('#form').addEventListener('submit',e=>{
+ e.preventDefault();
+ const r=[
+  check('name','name',v=>v.length>=2,'Please enter your name.'),
+  check('email','email',v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),'Please enter a valid email address.'),
+  check('cake','cake',v=>v!=='','Please choose a cake type.'),
+  check('date','date',v=>v&&new Date(v)>=today,'Please choose a date from today onwards.'),
+  check('msg','msg',v=>v.length>=10,'Please tell us a little more (10+ characters).')
+ ];
+ if(r.includes(false)){document.querySelector('.invalid').focus();return}
+ const ok=$('#ok');
+ ok.innerHTML='<strong>Thank you, '+$('#name').value.trim().replace(/[<>&"]/g,'')+'!</strong> This is a demo, so your enquiry was not sent and no order has been placed.';
+ ok.classList.add('show');ok.focus();e.target.reset();
+});
+</script>
+</body>
+</html>
